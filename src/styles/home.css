@@ -1168,13 +1168,38 @@
 }
 
 @media (max-width: 480px) {
+  .hero-title {
+    font-size: 2.2rem;
+    word-break: break-word;
+    hyphens: auto;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    word-break: break-word;
+    max-width: 100%;
+  }
+
   .hero-ctas {
     flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    white-space: normal;
+    text-align: center;
+    width: 100%;
+    padding: 0.85rem 1.5rem;
   }
 
   .hero-stats {
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 1.25rem;
+    justify-content: flex-start;
+  }
+
+  .hero-stat {
+    width: 45%;
   }
 
   .hero-stat-div {
@@ -1184,5 +1209,40 @@
   .section-head {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .proj-preview-title {
+    font-size: 1.3rem;
+    word-break: break-word;
+    line-height: 1.2;
+  }
+
+  .proj-preview-inner {
+    padding: 1rem;
+  }
+
+  .contact-link-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1rem;
+  }
+
+  .contact-link-label {
+    width: auto;
+  }
+
+  .contact-link-value {
+    word-break: break-all;
+    width: 100%;
+  }
+
+  .contact-row {
+    flex-wrap: wrap;
+    word-break: break-all;
+  }
+
+  .contact-card {
+    padding: 1.5rem;
   }
 }
