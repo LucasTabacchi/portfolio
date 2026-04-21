@@ -422,11 +422,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
             requestAnimationFrame(() => {
               const current = window.scrollY;
               if (current > 80) {
-                navbar.style.paddingTop = '0.6rem';
-                navbar.style.paddingBottom = '0.6rem';
+                navbar.classList.add('scrolled');
               } else {
-                navbar.style.paddingTop = '1.25rem';
-                navbar.style.paddingBottom = '1.25rem';
+                navbar.classList.remove('scrolled');
               }
               ticking = false;
             });
