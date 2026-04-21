@@ -210,10 +210,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
         function animateGlow() {
           glowX += (mouseX - glowX) * 0.08;
           glowY += (mouseY - glowY) * 0.08;
-          glow!.style.left = glowX + 'px';
-          glow!.style.top = glowY + 'px';
+          glow!.style.transform = `translate3d(${glowX}px, ${glowY}px, 0)`;
           requestAnimationFrame(animateGlow);
         }
+        // Use transform instead of top/left for performance
+        glow.style.left = '0';
+        glow.style.top = '0';
+        glow.style.willChange = 'transform';
         animateGlow();
       } else if (glow) {
         glow.style.display = 'none';
@@ -276,8 +279,9 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
             [34,  211, 238],  // cyan
             [248, 250, 252],  // near-white star
           ];
-          const density  = window.innerWidth < 768 ? 30000 : 14000;
-          const maxCount = window.innerWidth < 768 ? 60 : 130;
+          const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          const density  = window.innerWidth < 768 ? 35000 : 18000;
+          const maxCount = window.innerWidth < 768 ? (isReduced ? 10 : 40) : (isReduced ? 25 : 100);
           const count    = Math.min(Math.floor(canvas.width * canvas.height / density), maxCount);
 
           for (let i = 0; i < count; i++) {
@@ -330,16 +334,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
               const d  = Math.sqrt(dx * dx + dy * dy);
               const maxDist = 160;
               if (d < maxDist) {
-                const t = 1 - d / maxDist;
-                // Gradient line from p's color to q's color
-                const lg = ctx.createLinearGradient(p.x, p.y, q.x, q.y);
-                lg.addColorStop(0, `rgba(${p.colorR},${p.colorG},${p.colorB},${t * 0.18})`);
-                lg.addColorStop(1, `rgba(${q.colorR},${q.colorG},${q.colorB},${t * 0.08})`);
+                const t = (1 - d / maxDist) * 0.15;
                 ctx.beginPath();
                 ctx.moveTo(p.x, p.y);
                 ctx.lineTo(q.x, q.y);
-                ctx.strokeStyle = lg;
-                ctx.lineWidth = t * 0.8;
+                ctx.strokeStyle = `rgba(${p.colorR},${p.colorG},${p.colorB},${t})`;
+                ctx.lineWidth = 0.6;
                 ctx.stroke();
               }
             }
@@ -369,15 +369,13 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
             const { colorR: r, colorG: g, colorB: b } = p;
 
-            // Glow halo
-            const glow = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * p.glowSize);
-            glow.addColorStop(0,   `rgba(${r},${g},${b},${p.opacity * 0.6})`);
-            glow.addColorStop(0.3, `rgba(${r},${g},${b},${p.opacity * 0.2})`);
-            glow.addColorStop(1,   `rgba(${r},${g},${b},0)`);
+            // Simplified Glow halo (using globalAlpha instead of radial gradient for every particle)
+            ctx.globalAlpha = p.opacity * 0.3;
             ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size * p.glowSize, 0, Math.PI * 2);
-            ctx.fillStyle = glow;
+            ctx.arc(p.x, p.y, p.size * (p.glowSize * 0.5), 0, Math.PI * 2);
+            ctx.fillStyle = `rgb(${r},${g},${b})`;
             ctx.fill();
+            ctx.globalAlpha = 1.0;
 
             // Core dot
             ctx.beginPath();
@@ -453,8 +451,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
       if (progressBar) {
         window.addEventListener('scroll', () => {
           const total = document.documentElement.scrollHeight - window.innerHeight;
-          const pct   = total > 0 ? (window.scrollY / total) * 100 : 0;
-          progressBar.style.width = pct + '%';
+          const pct   = total > 0 ? (window.scrollY / total) : 0;
+          progressBar.style.transform = `scaleX(${pct})`;
         }, { passive: true });
       }
 

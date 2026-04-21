@@ -2,6 +2,36 @@
 import Layout from '../layouts/Layout.astro';
 import '../styles/home.css';
 import { contactItems, experienceItems, featuredProjects, profile, skillGroups, heroHighlights } from '../data/portfolio';
+import { Icon } from 'astro-icon/components';
+
+const skillIconMap: Record<string, string> = {
+  'Next.js': 'logos:nextjs-icon',
+  'React': 'logos:react',
+  'TypeScript': 'logos:typescript-icon',
+  'JavaScript': 'logos:javascript',
+  'Tailwind CSS': 'logos:tailwindcss-icon',
+  'Astro': 'logos:astro-icon',
+  'Python': 'logos:python',
+  'Django': 'logos:django-icon',
+  'Django REST Framework': 'logos:django-icon',
+  'Node.js': 'logos:nodejs-icon',
+  'Strapi': 'logos:strapi-icon',
+  'PostgreSQL': 'logos:postgresql',
+  'Prisma': 'logos:prisma',
+  'Redis': 'logos:redis',
+  'SQLite': 'logos:sqlite',
+  'GraphQL': 'logos:graphql',
+  'Mercado Pago': 'lucide:credit-card',
+  'Brevo': 'lucide:mail',
+  'CMS': 'lucide:database',
+  'Automatización': 'lucide:bot',
+  'Integraciones': 'lucide:blocks',
+  'Docker': 'logos:docker-icon',
+  'GitHub Actions': 'logos:github-actions',
+  'Supabase': 'logos:supabase-icon',
+  'Vercel': 'logos:vercel-icon',
+  'Render': 'lucide:cloud',
+};
 ---
 <Layout title={`${profile.name} — Portfolio`} activePage="home">
   <div class="home-page">
@@ -177,7 +207,12 @@ import { contactItems, experienceItems, featuredProjects, profile, skillGroups, 
               <h4 class="skill-card-title">{group.title}</h4>
             </div>
             <div class="skill-items">
-              {group.items.map((item: string) => <span class="skill-chip">{item}</span>)}
+              {group.items.map((item: string) => (
+                <span class="skill-chip">
+                  {skillIconMap[item] && <Icon name={skillIconMap[item]} class="skill-icon" />}
+                  {item}
+                </span>
+              ))}
             </div>
           </div>
         ))}
@@ -250,53 +285,55 @@ import { contactItems, experienceItems, featuredProjects, profile, skillGroups, 
     <!-- CONTACTS -->
     <section class="section contacts-section" id="contacts">
       <div class="contacts-inner">
+        <!-- Lado izquierdo: Textos -->
         <div class="contacts-text scroll-reveal">
           <p class="s-label">Contacto</p>
-          <h2 class="s-title">Hablemos</h2>
-          <p class="contacts-desc">
-            Estoy interesado en productos significativos y sistemas bien construidos.
-            Si tenés un proyecto, una idea o simplemente querés charlar, no dudes en escribirme.
+          <h2 class="s-title" style="margin-bottom: 2rem;">Hablemos</h2>
+          <p class="contacts-desc-new">
+            Estoy disponible para <span class="text-accent">proyectos freelance</span>, <span class="text-accent">oportunidades laborales</span> y <span class="text-accent">colaboraciones</span>. Si tenés un proyecto en mente y querés un presupuesto, o simplemente charlar, no dudes en escribirme.
           </p>
-          <div class="contact-links">
-            {contactItems.slice(0,3).map((item: any) => (
-              <a
-                href={item.href || '#'}
-                class="contact-link-card glass-card"
-                target={item.href && !item.href.startsWith('mailto:') ? '_blank' : undefined}
-                rel="noreferrer"
-              >
-                <strong class="contact-link-label">{item.label}</strong>
-                <span class="contact-link-value">{item.value}</span>
-                {item.href && (
-                  <svg class="contact-link-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-                )}
-              </a>
-            ))}
-          </div>
         </div>
-        <div class="contacts-visual scroll-reveal" style="transition-delay:0.2s">
-          <div class="contact-card glass-card">
-            <div class="contact-card-header">
-              <div class="contact-avatar">{profile.name.split(' ').map((n: string) => n[0]).join('').slice(0,2)}</div>
-              <div>
-                <p class="contact-card-name">{profile.name}</p>
-                <p class="contact-card-role">{profile.shortTitle}</p>
+        
+        <!-- Lado derecho: Formulario -->
+        <div class="contacts-form-container scroll-reveal" style="transition-delay:0.2s">
+          <form class="contact-form" action={`https://formsubmit.co/${profile.email}`} method="POST">
+            <!-- Configuración oculta para FormSubmit -->
+            <input type="hidden" name="_subject" value="¡Nuevo mensaje desde tu Portfolio!" />
+            <input type="text" name="_honey" style="display:none" />
+            <input type="hidden" name="_captcha" value="false" />
+            
+            <div class="form-row">
+              <div class="form-group">
+                <label for="name">Nombre</label>
+                <input type="text" id="name" name="name" placeholder="Tu nombre" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="tu@email.com" required />
               </div>
             </div>
-            <div class="contact-card-body">
-              <div class="contact-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                <a href={`mailto:${profile.email}`}>{profile.email}</a>
-              </div>
-              <div class="contact-row">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                <span>{profile.location}</span>
+            <div class="form-group">
+              <label for="reason">Motivo de contacto</label>
+              <div class="select-wrapper">
+                <select id="reason" name="reason" required>
+                  <option value="Consulta general" selected>Consulta general</option>
+                  <option value="Presupuesto">Presupuesto</option>
+                  <option value="Oportunidad laboral">Oportunidad laboral</option>
+                  <option value="Proyecto Freelance">Proyecto Freelance</option>
+                  <option value="Colaboración">Colaboración</option>
+                </select>
+                <svg class="select-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
               </div>
             </div>
-            <a href={`mailto:${profile.email}`} class="btn btn-primary" style="width:100%;margin-top:1.25rem;justify-content:center;">
+            <div class="form-group">
+              <label for="message">Mensaje</label>
+              <textarea id="message" name="message" rows="5" placeholder="Contame sobre tu proyecto o idea..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 0.5rem; width: max-content;">
               Enviar mensaje
-            </a>
-          </div>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </form>
         </div>
       </div>
     </section>
@@ -345,12 +382,16 @@ import { contactItems, experienceItems, featuredProjects, profile, skillGroups, 
       const my    = e.clientY - cy;
       const rotX  = (-my / (rect.height / 2)) * MAX_TILT;
       const rotY  = ( mx / (rect.width  / 2)) * MAX_TILT;
-      wrap.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px) scale(1.01)`;
-      wrap.style.boxShadow = `0 28px 70px rgba(0,0,0,0.4), ${-rotY * 1.5}px ${rotX * 1.5}px 30px rgba(139,92,246,0.12)`;
+      
+      // Use requestAnimationFrame to sync with the screen refresh rate
+      window.requestAnimationFrame(() => {
+        wrap.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px) scale(1.01)`;
+      });
     });
     wrap.addEventListener('mouseleave', () => {
-      wrap.style.transform = '';
-      wrap.style.boxShadow = '';
+      window.requestAnimationFrame(() => {
+        wrap.style.transform = '';
+      });
     });
   });
 
