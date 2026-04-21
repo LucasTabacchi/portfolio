@@ -57,6 +57,8 @@
 .hero-content {
   position: relative;
   z-index: 1;
+  min-width: 0;
+  max-width: 100%;
 }
 
 .hero-badge {
@@ -1106,8 +1108,9 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 1100px) {
   .hero-section {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     min-height: auto;
+    overflow-x: hidden;
   }
 
   .hero-visual {
@@ -1177,7 +1180,6 @@
 
   .hero-gradient-text {
     white-space: normal !important;
-    display: inline-block;
   }
 
   .hero-subtitle {
