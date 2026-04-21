@@ -132,14 +132,14 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
   min-height: 100vh;
   background: var(--bg);
   display: block;
-  overflow-x: hidden;
+  overflow-x: clip;
   position: relative;
 }
 
@@ -211,14 +211,12 @@ a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 img { max-width: 100%; }
 
-/* ── Custom scrollbar (Desktop only) ── */
-@media (pointer: fine) {
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: transparent; }
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--accent), var(--accent3));
-    border-radius: 999px;
-  }
+/* ── Hide scrollbars globally (using top progress bar instead) ── */
+::-webkit-scrollbar {
+  display: none;
+}
+html {
+  scrollbar-width: none;
 }
 
 ::selection {
@@ -839,6 +837,10 @@ main > :is(.home-page, .about-page, .works-page, .contacts-page) {
   .navbar {
     gap: 0; align-items: center; flex-wrap: nowrap;
     padding: 1rem 1.25rem !important;
+    background: rgba(3, 7, 18, 0.6) !important;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .nav-logo {
@@ -879,10 +881,6 @@ main > :is(.home-page, .about-page, .works-page, .contacts-page) {
   .footer-inner { flex-direction: column; }
   .footer-media h4 { text-align: left; }
   .footer-social { justify-content: flex-start; }
-
-  /* Hide scrollbars on mobile completely */
-  ::-webkit-scrollbar { display: none; }
-  * { scrollbar-width: none; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -891,5 +889,4 @@ main > :is(.home-page, .about-page, .works-page, .contacts-page) {
     transition-duration: 0.01ms !important;
   }
   .cursor-glow { display: none; }
-  #particles-canvas { display: none; }
 }

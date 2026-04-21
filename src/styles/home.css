@@ -1110,7 +1110,6 @@
   .hero-section {
     grid-template-columns: minmax(0, 1fr);
     min-height: auto;
-    overflow-x: hidden;
   }
 
   .hero-visual {
