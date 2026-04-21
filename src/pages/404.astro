@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="404 - Página no encontrada" description="La página que buscás no existe. Volvé al portfolio de Lucas Tabacchi.">
+  <div class="not-found">
+    <div class="nf-orb nf-orb-1"></div>
+    <div class="nf-orb nf-orb-2"></div>
+
+    <div class="nf-content">
+      <p class="nf-code">404</p>
+      <h1 class="nf-title">Página no encontrada</h1>
+      <p class="nf-text">
+        Parece que esta ruta no existe. Quizás el link cambió, fue eliminado o simplemente hay un typo.
+      </p>
+      <div class="nf-btns">
+        <a href="/" class="btn btn-primary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Volver al inicio
+        </a>
+        <a href="/#works" class="btn">Ver proyectos</a>
+      </div>
+    </div>
+  </div>
+</Layout>
+
+<style>
+  .not-found {
+    min-height: calc(100vh - 120px);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; position: relative; overflow: hidden;
+    padding: 2rem;
+  }
+
+  .nf-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none;
+  }
+  .nf-orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(139,92,246,0.12), transparent 70%);
+    top: -200px; left: -200px;
+    animation: float 10s ease-in-out infinite;
+  }
+  .nf-orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(56,189,248,0.08), transparent 70%);
+    bottom: -150px; right: -150px;
+    animation: float 12s ease-in-out infinite reverse;
+  }
+
+  .nf-content { position: relative; z-index: 1; max-width: 520px; }
+
+  .nf-code {
+    font-family: var(--font-head);
+    font-size: clamp(6rem, 15vw, 10rem);
+    font-weight: 900;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--accent), var(--accent3), var(--accent5));
+    background-size: 300% 300%;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 5s ease infinite;
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.05em;
+  }
+
+  .nf-title {
+    font-family: var(--font-head);
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--text-bright);
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .nf-text {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 42ch;
+    margin: 0 auto 2.5rem;
+  }
+
+  .nf-btns {
+    display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;
+  }
+</style>

@@ -1,0 +1,379 @@
+---
+import Layout from '../layouts/Layout.astro';
+import '../styles/home.css';
+import { contactItems, experienceItems, featuredProjects, profile, skillGroups, heroHighlights } from '../data/portfolio';
+---
+<Layout title={`${profile.name} — Portfolio`} activePage="home">
+  <div class="home-page">
+
+    <!-- HERO -->
+    <section class="hero-section" id="home">
+      <div class="hero-orb hero-orb-1" aria-hidden="true"></div>
+      <div class="hero-orb hero-orb-2" aria-hidden="true"></div>
+      <div class="hero-orb hero-orb-3" aria-hidden="true"></div>
+
+      <div class="hero-content animate-fade-up">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          Disponible para proyectos
+          <span class="badge-shimmer" aria-hidden="true"></span>
+        </div>
+
+        <h1 class="hero-title">
+          Diseño y construyo<br/>
+          <span class="hero-gradient-text">sistemas fullstack</span><br/>
+          orientados a producto
+        </h1>
+
+        <p class="hero-subtitle typewriter" id="hero-sub">{profile.heroSummary}</p>
+
+        <div class="hero-marquee-wrap animate-fade-up-2" aria-label="Tecnologías principales">
+          <div class="hero-marquee">
+            <div class="hero-marquee-track">
+              {[...heroHighlights, ...heroHighlights].map((tech: string) => (
+                <span class="hero-tech-tag">{tech}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-ctas animate-fade-up-3">
+          <a href="/#works" class="btn btn-primary">Ver proyectos</a>
+          <a href={profile.cvUrl || '#'} download class="btn btn-cv">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            Descargar CV
+          </a>
+          <a href="/#contacts" class="btn">Contactarme</a>
+          <a href={profile.github} target="_blank" rel="noreferrer" class="btn btn-ghost">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+        </div>
+
+        <div class="hero-stats animate-fade-up-4">
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="3" data-suffix="+">0+</span>
+            <span class="hero-stat-label">Proyectos destacados</span>
+          </div>
+          <div class="hero-stat-div"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="5" data-suffix="+">0+</span>
+            <span class="hero-stat-label">Stacks dominados</span>
+          </div>
+          <div class="hero-stat-div"></div>
+          <div class="hero-stat">
+            <span class="hero-stat-num" data-count="100" data-suffix="%">0%</span>
+            <span class="hero-stat-label">Foco en producto</span>
+          </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator animate-fade-up-4">
+          <span class="scroll-indicator-text">Scroll</span>
+          <div class="scroll-indicator-line"></div>
+        </div>
+      </div>
+
+      <!-- Hero Visual: code window + floating cards -->
+      <div class="hero-visual animate-fade-up-2">
+        <div class="hero-code-window">
+          <div class="code-titlebar">
+            <span class="code-dot red"></span>
+            <span class="code-dot yellow"></span>
+            <span class="code-dot green"></span>
+            <span class="code-filename">portfolio.ts</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line"><span class="c-keyword">const</span> <span class="c-var">developer</span> = &#123;</div>
+            <div class="code-line indent"><span class="c-prop">name</span>: <span class="c-str">"Lucas Tabacchi"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">role</span>: <span class="c-str">"Fullstack Developer"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">focus</span>: <span class="c-str">"Product-first"</span>,</div>
+            <div class="code-line indent"><span class="c-prop">stack</span>: [<span class="c-str">"Next.js"</span>, <span class="c-str">"Django"</span>, <span class="c-str">"TypeScript"</span>],</div>
+            <div class="code-line indent"><span class="c-prop">available</span>: <span class="c-bool">true</span>,</div>
+            <div class="code-line indent"><span class="c-prop">location</span>: <span class="c-str">"Entre Ríos, AR"</span></div>
+            <div class="code-line">&#125;;</div>
+            <div class="code-cursor"></div>
+          </div>
+        </div>
+        <div class="hero-float-card card-2">
+          <span class="float-card-icon cyan">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </span>
+          <div>
+            <p class="float-label">Disponibilidad</p>
+            <p class="float-value">Open to work</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section projects-section" id="works">
+      <div class="section-head scroll-reveal">
+        <div>
+          <p class="s-label">Trabajo</p>
+          <h2 class="s-title">Proyectos destacados</h2>
+        </div>
+        <a href="/works" class="view-all-btn">
+          Ver todos
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+      <div class="projects-grid">
+        {featuredProjects.map((project: any, i: number) => (
+          <div class="proj-card-border-wrap scroll-reveal" style={`transition-delay:${i*0.12}s`}>
+            <article class="proj-card" data-tilt>
+            <div class="proj-preview" style={`background-image: linear-gradient(180deg, rgba(3,7,18,0.05) 0%, rgba(3,7,18,0.7) 70%, rgba(3,7,18,0.95) 100%), url(${project.previewImage}); background-size: cover; background-position: ${project.previewPosition};`}>
+              <div class="proj-preview-inner">
+                <span class="proj-accent-tag">{project.accent}</span>
+                <h3 class="proj-preview-title">{project.title}</h3>
+                <div class="proj-tag-row">
+                  {project.tags.slice(0,3).map((t: string) => <span class="proj-tag-pill">{t}</span>)}
+                </div>
+              </div>
+            </div>
+            <div class="proj-body">
+              <p class="proj-desc">{project.description}</p>
+              <div class="proj-tags-wrap">
+                {project.tags.map((t: string) => <span class="tag">{t}</span>)}
+              </div>
+              <div class="proj-btns">
+                {project.demoUrl && (
+                  <a href={project.demoUrl} class="btn" target="_blank" rel="noreferrer">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    Demo
+                  </a>
+                )}
+                <a href={project.repoUrl} class="btn" target="_blank" rel="noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section skills-section" id="skills">
+      <div class="scroll-reveal">
+        <p class="s-label">Tecnologías</p>
+        <h2 class="s-title">Skills & Stack</h2>
+      </div>
+      <div class="skills-grid">
+        {skillGroups.map((group: any, i: number) => (
+          <div class="skill-card glass-card scroll-reveal" style={`transition-delay:${i*0.08}s`}>
+            <div class="skill-card-header">
+              <div class="skill-card-icon">
+                {group.title === 'Frontend' && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>}
+                {group.title === 'Backend' && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>}
+                {group.title === 'Datos' && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>}
+                {group.title === 'Producto' && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>}
+                {group.title === 'Infra' && <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>}
+              </div>
+              <h4 class="skill-card-title">{group.title}</h4>
+            </div>
+            <div class="skill-items">
+              {group.items.map((item: string) => <span class="skill-chip">{item}</span>)}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section about-section" id="about-me">
+      <div class="about-layout">
+        <div class="about-text scroll-reveal">
+          <p class="s-label">Sobre mí</p>
+          <h2 class="s-title">Hola, soy {profile.name.split(' ')[0]}!</h2>
+          <div class="about-paragraphs">
+            {profile.intro.map((p: string) => <p class="about-body">{p}</p>)}
+          </div>
+          <div class="about-principles">
+            {profile.principles.map((p: string) => (
+              <div class="principle-item">
+                <span class="principle-dot"></span>
+                <p>{p}</p>
+              </div>
+            ))}
+          </div>
+          <div class="about-ctas">
+            <a href="/about" class="btn btn-primary">Leer más</a>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" class="btn">LinkedIn</a>
+          </div>
+        </div>
+        <div class="about-side scroll-reveal" style="transition-delay:0.2s">
+          <div class="about-img-wrap">
+            <img src="/video-assets/about-figure.png" alt={profile.name} class="about-img" />
+            <div class="about-img-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              Open to work
+            </div>
+          </div>
+          <div class="about-location glass-card">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            {profile.location}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE / TIMELINE -->
+    <section class="section experience-section" id="experience">
+      <div class="scroll-reveal">
+        <p class="s-label">Trayectoria</p>
+        <h2 class="s-title">Experiencia & formación</h2>
+      </div>
+      <div class="timeline">
+        {experienceItems.map((item: any, i: number) => (
+          <div class="timeline-item scroll-reveal" style={`transition-delay:${i*0.1}s`}>
+            <div class="timeline-card glass-card">
+              <div class="timeline-header">
+                <h3 class="timeline-title">{item.title}</h3>
+                <span class="timeline-period">{item.period}</span>
+              </div>
+              <p class="timeline-subtitle">{item.subtitle}</p>
+              <p class="timeline-desc">{item.description}</p>
+              <div class="timeline-tags">
+                {item.tags.map((t: string) => <span class="tag">{t}</span>)}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section class="section contacts-section" id="contacts">
+      <div class="contacts-inner">
+        <div class="contacts-text scroll-reveal">
+          <p class="s-label">Contacto</p>
+          <h2 class="s-title">Hablemos</h2>
+          <p class="contacts-desc">
+            Estoy interesado en productos significativos y sistemas bien construidos.
+            Si tenés un proyecto, una idea o simplemente querés charlar, no dudes en escribirme.
+          </p>
+          <div class="contact-links">
+            {contactItems.slice(0,3).map((item: any) => (
+              <a
+                href={item.href || '#'}
+                class="contact-link-card glass-card"
+                target={item.href && !item.href.startsWith('mailto:') ? '_blank' : undefined}
+                rel="noreferrer"
+              >
+                <strong class="contact-link-label">{item.label}</strong>
+                <span class="contact-link-value">{item.value}</span>
+                {item.href && (
+                  <svg class="contact-link-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                )}
+              </a>
+            ))}
+          </div>
+        </div>
+        <div class="contacts-visual scroll-reveal" style="transition-delay:0.2s">
+          <div class="contact-card glass-card">
+            <div class="contact-card-header">
+              <div class="contact-avatar">{profile.name.split(' ').map((n: string) => n[0]).join('').slice(0,2)}</div>
+              <div>
+                <p class="contact-card-name">{profile.name}</p>
+                <p class="contact-card-role">{profile.shortTitle}</p>
+              </div>
+            </div>
+            <div class="contact-card-body">
+              <div class="contact-row">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                <a href={`mailto:${profile.email}`}>{profile.email}</a>
+              </div>
+              <div class="contact-row">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <span>{profile.location}</span>
+              </div>
+            </div>
+            <a href={`mailto:${profile.email}`} class="btn btn-primary" style="width:100%;margin-top:1.25rem;justify-content:center;">
+              Enviar mensaje
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</Layout>
+
+<script>
+  // ── Animated counters ──
+  function animateCounter(el: HTMLElement) {
+    const target = parseInt(el.dataset.count || '0', 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1800;
+    const start = performance.now();
+    function tick(now: number) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      // easeOutCubic
+      const ease = 1 - Math.pow(1 - progress, 3);
+      el.textContent = Math.round(ease * target) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const counterEls = document.querySelectorAll<HTMLElement>('[data-count]');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounter(entry.target as HTMLElement);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  counterEls.forEach(el => counterObserver.observe(el));
+
+  // ── 3D tilt on project cards ──
+  document.querySelectorAll<HTMLElement>('[data-tilt]').forEach(card => {
+    const MAX_TILT = 10; // degrees
+    const wrap = card.closest<HTMLElement>('.proj-card-border-wrap') || card;
+    wrap.addEventListener('mousemove', (e) => {
+      const rect  = wrap.getBoundingClientRect();
+      const cx    = rect.left + rect.width  / 2;
+      const cy    = rect.top  + rect.height / 2;
+      const mx    = e.clientX - cx;
+      const my    = e.clientY - cy;
+      const rotX  = (-my / (rect.height / 2)) * MAX_TILT;
+      const rotY  = ( mx / (rect.width  / 2)) * MAX_TILT;
+      wrap.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-8px) scale(1.01)`;
+      wrap.style.boxShadow = `0 28px 70px rgba(0,0,0,0.4), ${-rotY * 1.5}px ${rotX * 1.5}px 30px rgba(139,92,246,0.12)`;
+    });
+    wrap.addEventListener('mouseleave', () => {
+      wrap.style.transform = '';
+      wrap.style.boxShadow = '';
+    });
+  });
+
+  // ── Typewriter effect for hero subtitle ──
+  const typeEl = document.getElementById('hero-sub');
+  if (typeEl) {
+    const fullText = typeEl.textContent || '';
+    typeEl.textContent = '';
+    typeEl.style.borderRight = '2px solid rgba(139,92,246,0.7)';
+    typeEl.style.paddingRight = '2px';
+    let i = 0;
+    function typeNext() {
+      if (i < fullText.length) {
+        typeEl!.textContent = fullText.slice(0, ++i);
+        setTimeout(typeNext, 22 + Math.random() * 18);
+      } else {
+        // blink then remove cursor
+        setTimeout(() => {
+          typeEl!.style.borderRight = 'none';
+        }, 1200);
+      }
+    }
+    // Start after entry animation
+    setTimeout(typeNext, 900);
+  }
+</script>

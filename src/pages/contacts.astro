@@ -1,0 +1,249 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { contactItems, profile } from '../data/portfolio';
+---
+<Layout title={`Contacts — ${profile.name}`} activePage="contacts" description="Contactá a Lucas Tabacchi: fullstack developer disponible para proyectos, colaboraciones y oportunidades laborales.">
+  <div class="contacts-page">
+    <div class="page-title-row animate-fade-up">
+      <h1 class="page-h1">Contacto</h1>
+      <span class="title-line"></span>
+    </div>
+
+    <div class="contacts-layout">
+      <div class="c-main scroll-reveal">
+        <h2 class="c-heading">Conectemos<span class="c-dot">.</span></h2>
+        <p class="c-text">
+          Estoy interesado en productos significativos y sistemas bien construidos.
+          Si tenés un proyecto, una idea o simplemente querés charlar, no dudes en escribirme.
+        </p>
+
+        <div class="c-links">
+          {contactItems.map((item, i) => (
+            <div class="c-link-row scroll-reveal" style={`transition-delay:${i*0.08}s`}>
+              {item.href ? (
+                <a href={item.href} class="c-link glass-card" target={item.href.startsWith('mailto:') ? undefined : '_blank'} rel="noreferrer">
+                  <strong class="c-link-label">{item.label}</strong>
+                  <span class="c-link-value">{item.value}</span>
+                  <svg class="c-link-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+              ) : (
+                <div class="c-link glass-card">
+                  <strong class="c-link-label">{item.label}</strong>
+                  <span class="c-link-value">{item.value}</span>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="c-visual scroll-reveal-right">
+        <form class="contact-form glass-card" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <h3 class="cf-title">Enviar mensaje</h3>
+
+          <div class="cf-field">
+            <label for="cf-name" class="cf-label">Nombre</label>
+            <input id="cf-name" name="name" type="text" class="cf-input" placeholder="Tu nombre" required />
+          </div>
+
+          <div class="cf-field">
+            <label for="cf-email" class="cf-label">Email</label>
+            <input id="cf-email" name="email" type="email" class="cf-input" placeholder="tu@email.com" required />
+          </div>
+
+          <div class="cf-field">
+            <label for="cf-msg" class="cf-label">Mensaje</label>
+            <textarea id="cf-msg" name="message" class="cf-input cf-textarea" placeholder="Contame sobre tu proyecto o idea..." rows="4" required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary cf-submit" id="cf-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Enviar
+          </button>
+
+          <p class="cf-success" id="cf-success" aria-live="polite"></p>
+        </form>
+    </div>
+  </div>
+</Layout>
+
+
+<style>
+  .contacts-page { padding: 2rem 2.5rem 5rem; }
+
+  .page-title-row { display: flex; align-items: center; margin-bottom: 3rem; }
+  .slash { color: var(--accent); font-size: 1.5rem; font-family: var(--font-head); font-weight: 700; }
+  .page-h1 { font-size: 1.5rem; color: var(--text-bright); font-weight: 600; font-family: var(--font-head); }
+  .title-line {
+    flex: 1; max-width: 200px; height: 1px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    opacity: 0.4; margin-left: 1rem;
+  }
+
+  .contacts-layout {
+    display: grid; grid-template-columns: 1fr 380px;
+    gap: 5rem; align-items: start;
+  }
+
+  .c-heading {
+    font-family: var(--font-head); font-size: 2rem; font-weight: 700;
+    color: var(--text-bright); margin-bottom: 1rem; letter-spacing: -0.02em;
+  }
+  .c-dot { color: var(--accent); }
+
+  .c-text {
+    font-size: 0.92rem; color: var(--text); line-height: 1.85;
+    max-width: 480px; margin-bottom: 2.5rem;
+  }
+
+  .c-links { display: flex; flex-direction: column; gap: 0.75rem; }
+
+  .c-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.1rem 1.25rem; border-radius: var(--radius);
+    transition: all 0.35s var(--ease-out-expo); cursor: pointer;
+  }
+  .c-link:hover {
+    transform: translateX(8px);
+    border-color: var(--border-accent);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  }
+
+  .c-link-label {
+    font-size: 0.78rem; font-weight: 600; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.08em;
+    width: 80px; flex-shrink: 0;
+  }
+
+  .c-link-value {
+    font-size: 0.88rem; color: var(--text-bright); flex: 1;
+    font-family: var(--font-mono);
+  }
+
+  .c-link-arrow {
+    color: var(--accent2); flex-shrink: 0; opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .c-link:hover .c-link-arrow { opacity: 1; transform: translateX(4px); }
+
+  /* Message card */
+  .msg-card { padding: 2rem; border-radius: var(--radius-lg); }
+
+  .msg-header {
+    display: flex; align-items: center; gap: 1rem;
+    padding-bottom: 1.5rem; border-bottom: 1px solid var(--border);
+    margin-bottom: 1.5rem;
+  }
+
+  .msg-avatar {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--accent), #6d28d9, var(--accent3));
+    background-size: 200% 200%;
+    animation: gradient-shift 5s ease infinite;
+    border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-head); font-size: 1.15rem; font-weight: 700;
+    color: #fff; flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(139,92,246,0.3);
+  }
+
+  .msg-name {
+    font-family: var(--font-head); font-size: 1.05rem; font-weight: 600;
+    color: var(--text-bright); margin-bottom: 0.2rem;
+  }
+  .msg-role { font-size: 0.78rem; color: var(--text-dim); }
+
+  .msg-body { margin-bottom: 0.5rem; }
+
+  .msg-row {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.85rem; color: var(--text); margin-bottom: 0.85rem;
+  }
+  .msg-row svg { color: var(--accent2); flex-shrink: 0; }
+  .msg-row a { color: var(--text); transition: color 0.2s; }
+  .msg-row a:hover { color: var(--accent2); }
+
+  @media (max-width: 900px) {
+    .contacts-layout { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  @media (max-width: 640px) {
+    .contacts-page { padding: 1.5rem 1.25rem 3rem; }
+    .c-link { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .c-link-label { width: auto; }
+  }
+
+  /* ── Contact form ── */
+  .contact-form { padding: 2rem; border-radius: var(--radius-lg); display: flex; flex-direction: column; gap: 1.25rem; }
+
+  .cf-title {
+    font-family: var(--font-head); font-size: 1.15rem; font-weight: 600;
+    color: var(--text-bright); margin-bottom: 0.25rem;
+  }
+
+  .cf-field { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .cf-label {
+    font-size: 0.78rem; font-weight: 600; color: var(--text-dim);
+    text-transform: uppercase; letter-spacing: 0.08em;
+  }
+
+  .cf-input {
+    background: rgba(15,23,42,0.6);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-bright);
+    font-family: var(--font);
+    font-size: 0.88rem;
+    padding: 0.7rem 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none;
+    resize: none;
+    width: 100%;
+  }
+  .cf-input::placeholder { color: var(--text-dim); }
+  .cf-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(139,92,246,0.12);
+  }
+  .cf-textarea { min-height: 110px; }
+
+  .cf-submit { width: 100%; justify-content: center; margin-top: 0.25rem; }
+  .cf-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  .cf-success {
+    font-size: 0.85rem; color: var(--emerald); text-align: center;
+    min-height: 1.2rem;
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const btn  = document.getElementById('cf-btn') as HTMLButtonElement | null;
+  const msg  = document.getElementById('cf-success') as HTMLElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!btn || !msg) return;
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        form.reset();
+        msg.textContent = '✓ Mensaje enviado. ¡Te escribo pronto!';
+        btn.textContent = 'Enviado';
+      } else {
+        throw new Error('error');
+      }
+    } catch {
+      msg.textContent = '✕ Hubo un error. Escribime directamente por email.';
+      msg.style.color = '#f87171';
+      btn.disabled = false;
+      btn.textContent = 'Reintentar';
+    }
+  });
+</script>
