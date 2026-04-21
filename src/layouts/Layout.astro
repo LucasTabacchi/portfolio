@@ -208,9 +208,10 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
         });
 
         function animateGlow() {
-          glowX += (mouseX - glowX) * 0.08;
-          glowY += (mouseY - glowY) * 0.08;
-          glow!.style.transform = `translate3d(${glowX}px, ${glowY}px, 0)`;
+          glowX += (mouseX - glowX) * 0.12;
+          glowY += (mouseY - glowY) * 0.12;
+          // Offset by -250px to center the 500px glow
+          glow!.style.transform = `translate3d(${glowX - 250}px, ${glowY - 250}px, 0)`;
           requestAnimationFrame(animateGlow);
         }
         // Use transform instead of top/left for performance
@@ -280,8 +281,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
             [248, 250, 252],  // near-white star
           ];
           const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          const density  = window.innerWidth < 768 ? 35000 : 18000;
-          const maxCount = window.innerWidth < 768 ? (isReduced ? 10 : 40) : (isReduced ? 25 : 100);
+          const density  = window.innerWidth < 768 ? 35000 : 25000;
+          const maxCount = window.innerWidth < 768 ? (isReduced ? 10 : 40) : (isReduced ? 25 : 65);
           const count    = Math.min(Math.floor(canvas.width * canvas.height / density), maxCount);
 
           for (let i = 0; i < count; i++) {
@@ -311,19 +312,8 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
         function draw() {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-          // ── Draw nebula blobs ──
-          for (const n of nebulas) {
-            n.phase += n.speed;
-            const pulse = 0.85 + Math.sin(n.phase) * 0.15;
-            const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * pulse);
-            grad.addColorStop(0,   `rgba(${n.colorStr}, 0.045)`);
-            grad.addColorStop(0.4, `rgba(${n.colorStr}, 0.02)`);
-            grad.addColorStop(1,   `rgba(${n.colorStr}, 0)`);
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r * pulse, 0, Math.PI * 2);
-            ctx.fillStyle = grad;
-            ctx.fill();
-          }
+          // ── Nebula blobs removed (now handled by CSS for better performance) ──
+
 
           // ── Draw connection lines first (behind particles) ──
           for (let i = 0; i < particles.length; i++) {
