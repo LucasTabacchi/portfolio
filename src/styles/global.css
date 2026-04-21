@@ -835,7 +835,16 @@ main > :is(.home-page, .about-page, .works-page, .contacts-page) {
 
 @media (max-width: 640px) {
   .navbar {
-    gap: 0; align-items: center; flex-wrap: wrap;
+    gap: 0; align-items: center; flex-wrap: nowrap;
+    padding: 1rem 1.25rem !important;
+  }
+
+  .nav-logo {
+    gap: 0.5rem;
+  }
+
+  main > :is(.home-page, .about-page, .works-page, .contacts-page) { 
+    width: 100% !important; 
   }
 
   .nav-toggle { display: flex; }
@@ -851,6 +860,9 @@ main > :is(.home-page, .about-page, .works-page, .contacts-page) {
     border-radius: 0 0 var(--radius) var(--radius);
     border: 1px solid var(--border);
     border-top: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
   }
 
   .nav-links.open { display: flex; }

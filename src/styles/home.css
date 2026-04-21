@@ -1172,12 +1172,19 @@
     font-size: 2.2rem;
     word-break: break-word;
     hyphens: auto;
+    white-space: normal !important;
+  }
+
+  .hero-gradient-text {
+    white-space: normal !important;
+    display: inline-block;
   }
 
   .hero-subtitle {
     font-size: 1.1rem;
     word-break: break-word;
     max-width: 100%;
+    white-space: normal !important;
   }
 
   .hero-ctas {
