@@ -224,8 +224,11 @@ import { contactItems, profile } from '../data/portfolio';
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
     if (!btn || !msg) return;
+    
+    const originalText = btn.innerHTML;
     btn.disabled = true;
     btn.textContent = 'Enviando…';
+    
     try {
       const res = await fetch(form.action, {
         method: 'POST',
@@ -236,6 +239,12 @@ import { contactItems, profile } from '../data/portfolio';
         form.reset();
         msg.textContent = '✓ Mensaje enviado. ¡Te escribo pronto!';
         btn.textContent = 'Enviado';
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+          msg.textContent = '';
+        }, 4000);
       } else {
         throw new Error('error');
       }
@@ -244,6 +253,12 @@ import { contactItems, profile } from '../data/portfolio';
       msg.style.color = '#f87171';
       btn.disabled = false;
       btn.textContent = 'Reintentar';
+      
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        msg.textContent = '';
+        msg.style.color = '';
+      }, 4000);
     }
   });
 </script>

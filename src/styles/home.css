@@ -1259,3 +1259,11 @@
     padding: 1.5rem;
   }
 }
+
+/* ── Form success state ── */
+.btn-success {
+  background: var(--emerald) !important;
+  border-color: var(--emerald) !important;
+  color: #fff !important;
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.4) !important;
+}
