@@ -42,12 +42,12 @@ const Experience = () => {
       <div className="container">
         <div
           ref={head.ref}
-          className={`mb-20 max-w-3xl reveal ${head.visible ? "is-visible" : ""}`}
+          className={`mb-20 max-w-4xl reveal ${head.visible ? "is-visible" : ""}`}
         >
           <div className="font-mono text-xs text-primary uppercase tracking-widest mb-4">
             04 — Trayectoria
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold leading-[0.95]">
+          <h2 className="text-5xl md:text-6xl xl:text-7xl font-bold leading-[0.95]">
             Un camino <span className="font-serif-display italic text-gradient-warm">en construcción</span>.
           </h2>
         </div>
@@ -55,7 +55,7 @@ const Experience = () => {
         <div className="relative">
           <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-border to-transparent" />
 
-          <div className="space-y-12">
+          <div className="space-y-12 xl:space-y-16">
             {items.map((it, i) => (
               <TimelineItem key={it.title} it={it} index={i} />
             ))}
@@ -81,7 +81,7 @@ const TimelineItem = ({ it, index }: { it: (typeof items)[number]; index: number
     >
       <div className={`pl-12 md:pl-0 ${i % 2 === 0 ? "md:text-right md:pr-16" : "md:pl-16"}`}>
         <div className="font-mono text-sm text-secondary mb-1">{it.year}</div>
-        <h3 className="text-2xl font-bold mb-1 transition-colors duration-300 hover:text-primary">{it.title}</h3>
+        <h3 className="text-2xl xl:text-3xl font-bold mb-1 transition-colors duration-300 hover:text-primary">{it.title}</h3>
         <div className="text-sm text-muted-foreground">{it.org}</div>
       </div>
 

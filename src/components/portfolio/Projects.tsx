@@ -60,12 +60,9 @@ const featured: Featured[] = [
 ];
 
 const other = [
-  { name: "Banking events Kafka", tech: "Next.js · Kafka", url: "https://github.com/LucasTabacchi/banking-events-kafka-nextjs" },
-  { name: "Strapi backend ecommerce", tech: "TypeScript · Strapi", url: "https://github.com/LucasTabacchi/strapi-backend-ecommerce" },
-  { name: "IS2 — Patrones de diseño", tech: "Python · Patrones", url: "https://github.com/LucasTabacchi/IS2_TPFI" },
+  { name: "Banking events system", tech: "Next.js · Kafka", url: "https://github.com/LucasTabacchi/banking-events-kafka-nextjs" },
   { name: "SPA Flybondi", tech: "JavaScript · SPA", url: "https://github.com/LucasTabacchi/spa_flybondi" },
   { name: "SPA SpaceX", tech: "JavaScript · SPA", url: "https://github.com/LucasTabacchi/spa_space_x" },
-  { name: "UX-UI", tech: "HTML · UX/UI", url: "https://github.com/LucasTabacchi/UX-UI" },
 ];
 
 const Projects = () => {
@@ -82,7 +79,7 @@ const Projects = () => {
             <div className="font-mono text-xs text-primary uppercase tracking-widest mb-4">
               03 — Proyectos
             </div>
-            <h2 className="text-5xl md:text-6xl font-bold leading-[0.95] max-w-2xl">
+            <h2 className="text-5xl md:text-6xl xl:text-7xl font-bold leading-[0.95] max-w-3xl">
               Cosas que <span className="font-serif-display italic text-gradient">construí</span>.
             </h2>
           </div>
@@ -96,7 +93,7 @@ const Projects = () => {
           </a>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-8 xl:space-y-10">
           {featured.map((p, i) => (
             <ProjectCard key={p.title} p={p} index={i} />
           ))}
@@ -125,19 +122,18 @@ const ProjectCard = ({ p, index }: { p: Featured; index: number }) => {
   return (
     <article
       ref={ref as React.RefObject<HTMLElement>}
-      className={`group relative grid lg:grid-cols-12 gap-8 items-center p-6 md:p-10 rounded-3xl border border-border bg-card/40 backdrop-blur-sm hover:border-primary/40 transition-all overflow-hidden tilt-card reveal ${visible ? "is-visible" : ""} ${
-        index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
-      }`}
+      className={`group relative grid lg:grid-cols-12 gap-8 xl:gap-12 items-center p-6 md:p-10 xl:p-14 rounded-3xl border border-border bg-card/40 backdrop-blur-sm hover:border-primary/40 transition-all overflow-hidden tilt-card reveal ${visible ? "is-visible" : ""} ${index % 2 === 1 ? "lg:[&>div:first-child]:order-2" : ""
+        }`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <div className="lg:col-span-7 relative rounded-2xl overflow-hidden aspect-[16/10] bg-muted">
+      <div className="lg:col-span-7 relative rounded-2xl overflow-hidden aspect-video bg-muted">
         <img
           src={p.image}
           alt={p.title}
           loading="lazy"
           width={1200}
-          height={900}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 ease-out"
+          height={675}
+          className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-1000 ease-out"
         />
         <div className={`absolute inset-0 bg-gradient-to-t ${p.accentOverlay} via-transparent to-transparent pointer-events-none transition-opacity duration-500 group-hover:opacity-50`} />
         <div className="absolute inset-0 ring-1 ring-inset ring-foreground/0 group-hover:ring-primary/40 transition-all duration-500 rounded-2xl pointer-events-none" />
@@ -150,8 +146,8 @@ const ProjectCard = ({ p, index }: { p: Featured; index: number }) => {
           <span className="text-muted-foreground uppercase tracking-widest">{p.tagline}</span>
         </div>
 
-        <h3 className="text-3xl md:text-4xl font-bold transition-colors duration-300 group-hover:text-primary">{p.title}</h3>
-        <p className="text-muted-foreground leading-relaxed">{p.description}</p>
+        <h3 className="text-3xl md:text-4xl xl:text-5xl font-bold transition-colors duration-300 group-hover:text-primary">{p.title}</h3>
+        <p className="text-muted-foreground leading-relaxed text-base xl:text-lg">{p.description}</p>
 
         <div className="flex flex-wrap gap-2">
           {p.tags.map((t) => (

@@ -6,7 +6,7 @@ const About = () => {
 
   return (
     <section id="about" className="relative py-32 border-t border-border">
-      <div className="container grid lg:grid-cols-12 gap-12 items-start">
+      <div className="container grid lg:grid-cols-12 gap-12 lg:gap-16 xl:gap-20 items-start">
         <div
           ref={head.ref}
           className={`lg:col-span-4 reveal reveal-left ${head.visible ? "is-visible" : ""}`}
@@ -14,7 +14,7 @@ const About = () => {
           <div className="font-mono text-xs text-primary uppercase tracking-widest mb-4">
             01 — Sobre mí
           </div>
-          <h2 className="text-5xl md:text-6xl font-bold leading-[0.95]">
+          <h2 className="text-5xl md:text-6xl xl:text-7xl font-bold leading-[0.95]">
             Construyo
             <br />
             <span className="font-serif-display italic text-gradient-warm">software</span>

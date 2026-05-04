@@ -48,7 +48,7 @@ const Hero = () => {
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 -z-10 bg-gradient-to-b from-transparent to-background" />
 
       <div className="container relative pt-32 pb-20">
-        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-10 items-center">
+        <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 xl:gap-20 items-center">
           <div>
           <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-border bg-card/40 backdrop-blur-sm font-mono text-xs animate-fade-up">
             <span className="relative size-2 rounded-full bg-secondary">
@@ -57,7 +57,7 @@ const Hero = () => {
             Disponible para nuevos proyectos
           </div>
 
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl font-bold leading-[0.9] tracking-tight animate-fade-up" style={{ animationDelay: "0.1s" }}>
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-8xl xl:text-9xl font-bold leading-[0.9] tracking-tight animate-fade-up" style={{ animationDelay: "0.1s" }}>
             Lucas
             <br />
             <span className="font-serif-display italic text-gradient-animated inline-block animate-glow-pulse">Tabacchi</span>
@@ -109,7 +109,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-3xl animate-fade-up" style={{ animationDelay: "0.4s" }}>
+        <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 lg:gap-10 animate-fade-up" style={{ animationDelay: "0.4s" }}>
             {[
               { k: "20+", v: "Proyectos en GitHub" },
               { k: "Fullstack", v: "Front · Back · Infra" },
