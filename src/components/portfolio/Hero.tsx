@@ -107,9 +107,9 @@ const Hero = () => {
           <div className="w-full">
             <JsonTerminal />
           </div>
-        </div>
 
-        <div className="mt-20 grid grid-cols-2 sm:grid-cols-4 gap-6 lg:gap-10 animate-fade-up" style={{ animationDelay: "0.4s" }}>
+          {/* Stats — inside grid, spanning both columns on desktop */}
+          <div className="lg:col-span-2 grid grid-cols-2 sm:grid-cols-4 gap-6 lg:gap-10 animate-fade-up" style={{ animationDelay: "0.4s" }}>
             {[
               { k: "20+", v: "Proyectos en GitHub" },
               { k: "Fullstack", v: "Front · Back · Infra" },
@@ -129,6 +129,7 @@ const Hero = () => {
                 </div>
               </div>
             ))}
+          </div>
         </div>
       </div>
 
