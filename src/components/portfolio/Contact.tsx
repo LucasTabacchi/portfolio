@@ -85,13 +85,13 @@ const Contact = () => {
               <div className="font-mono text-xs text-primary uppercase tracking-widest mb-6">
                 05 — Contacto
               </div>
-              <h2 className="text-6xl md:text-7xl xl:text-8xl font-bold leading-[0.9] tracking-tight">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-bold leading-[0.9] tracking-tight">
                 Tenés una idea?
                 <br />
                 <span className="font-serif-display italic text-gradient-animated">Construyámosla</span>.
               </h2>
 
-              <p className="mt-8 text-lg text-muted-foreground max-w-xl">
+              <p className="mt-8 text-base sm:text-lg text-muted-foreground max-w-xl">
                 Estoy disponible para proyectos freelance, colaboraciones y oportunidades fullstack orientadas a producto. Dejame tu mensaje y te respondo en menos de 24h.
               </p>
             </div>
@@ -192,7 +192,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium hover:scale-[1.01] transition-transform disabled:opacity-60 disabled:cursor-not-allowed self-start"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium hover:scale-[1.01] transition-transform disabled:opacity-60 disabled:cursor-not-allowed w-full sm:w-auto sm:self-start"
               >
                 {loading ? (
                   <>
