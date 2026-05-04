@@ -75,7 +75,7 @@ const Hero = () => {
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-border hover:border-primary hover:text-primary hover:scale-[1.04] transition-all duration-300"
+              className="inline-flex items-center gap-2 px-7 py-4 rounded-full border border-foreground/20 bg-background/40 backdrop-blur-sm sm:border-border/60 hover:border-primary hover:text-primary hover:bg-primary/5 hover:scale-[1.04] transition-all duration-300"
             >
               Contactarme
             </a>
@@ -92,7 +92,7 @@ const Hero = () => {
                   target={href.startsWith("http") ? "_blank" : undefined}
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="size-11 grid place-items-center rounded-full border border-border hover:border-primary hover:text-primary hover:scale-110 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-300"
+                  className="size-11 grid place-items-center rounded-full border border-foreground/20 bg-background/40 backdrop-blur-sm sm:border-border/60 hover:border-primary hover:bg-primary/5 hover:text-primary hover:scale-110 hover:shadow-[0_0_20px_hsl(var(--primary)/0.5)] transition-all duration-300"
                 >
                   <Icon className="size-4" />
                 </a>
