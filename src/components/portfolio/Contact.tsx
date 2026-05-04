@@ -79,55 +79,28 @@ const Contact = () => {
 
       <div className="container relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20">
-          {/* Left column — heading + info cards */}
-          <div>
-            <div ref={head.ref} className={`reveal ${head.visible ? "is-visible" : ""}`}>
-              <div className="font-mono text-xs text-primary uppercase tracking-widest mb-6">
-                05 — Contacto
-              </div>
-              <h2 className="text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-bold leading-[0.9] tracking-tight">
-                Tenés una idea?
-                <br />
-                <span className="font-serif-display italic text-gradient-animated">Construyámosla</span>.
-              </h2>
-
-              <p className="mt-8 text-base sm:text-lg text-muted-foreground max-w-xl">
-                Estoy disponible para proyectos freelance, colaboraciones y oportunidades fullstack orientadas a producto. Dejame tu mensaje y te respondo en menos de 24h.
-              </p>
+          {/* Heading — always first */}
+          <div ref={head.ref} className={`reveal ${head.visible ? "is-visible" : ""}`}>
+            <div className="font-mono text-xs text-primary uppercase tracking-widest mb-6">
+              05 — Contacto
             </div>
+            <h2 className="text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-bold leading-[0.9] tracking-tight">
+              Tenés una idea?
+              <br />
+              <span className="font-serif-display italic text-gradient-animated">Construyámosla</span>.
+            </h2>
 
-            <div ref={cards.ref} className={`mt-12 grid gap-4 reveal ${cards.visible ? "is-visible" : ""}`}>
-              {[
-                { icon: Github, label: "GitHub", value: "@LucasTabacchi", href: "https://github.com/LucasTabacchi" },
-                { icon: Linkedin, label: "LinkedIn", value: "Lucas Tabacchi", href: "https://www.linkedin.com/in/lucas-tabacchi-ab74551a5/?skipRedirect=true" },
-                { icon: MapPin, label: "Ubicación", value: "Concepción del Uruguay, ER, AR", href: "#" },
-              ].map((c, i) => (
-                <a
-                  key={c.label}
-                  href={c.href}
-                  target={c.href.startsWith("http") ? "_blank" : undefined}
-                  rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-5 rounded-2xl border border-border bg-card/40 backdrop-blur-sm hover:border-primary hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_hsl(var(--primary)/0.5)] transition-all duration-300 shine"
-                  style={{ transitionDelay: `${i * 80}ms` }}
-                >
-                  <c.icon className="size-5 text-muted-foreground shrink-0 transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
-                  <div>
-                    <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
-                      {c.label}
-                    </div>
-                    <div className="font-medium">{c.value}</div>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <p className="mt-8 text-base sm:text-lg text-muted-foreground max-w-xl">
+              Estoy disponible para proyectos freelance, colaboraciones y oportunidades fullstack orientadas a producto. Dejame tu mensaje y te respondo en menos de 24h.
+            </p>
           </div>
 
-          {/* Right column — form */}
-          <div>
+          {/* Form — second on mobile, right column spanning both rows on desktop */}
+          <div className="order-1 lg:order-none lg:row-start-1 lg:row-end-3 lg:col-start-2">
             <form
               ref={formReveal.ref}
               onSubmit={handleSubmit}
-              className={`grid gap-5 p-8 xl:p-10 rounded-3xl border border-border bg-card/40 backdrop-blur-sm lg:sticky lg:top-24 reveal reveal-scale ${formReveal.visible ? "is-visible" : ""}`}
+              className={`grid gap-5 p-6 sm:p-8 xl:p-10 rounded-3xl border border-border bg-card/40 backdrop-blur-sm lg:sticky lg:top-24 reveal reveal-scale ${formReveal.visible ? "is-visible" : ""}`}
               noValidate
             >
               <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
@@ -192,7 +165,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium hover:scale-[1.01] transition-transform disabled:opacity-60 disabled:cursor-not-allowed w-full sm:w-auto sm:self-start"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-primary text-primary-foreground font-medium hover:scale-[1.01] transition-transform disabled:opacity-60 disabled:cursor-not-allowed w-full sm:w-auto sm:self-center"
               >
                 {loading ? (
                   <>
@@ -207,6 +180,32 @@ const Contact = () => {
                 )}
               </button>
             </form>
+          </div>
+
+          {/* Info cards — last on mobile, below heading on desktop */}
+          <div ref={cards.ref} className={`order-2 lg:order-none grid gap-4 reveal ${cards.visible ? "is-visible" : ""}`}>
+            {[
+              { icon: Github, label: "GitHub", value: "@LucasTabacchi", href: "https://github.com/LucasTabacchi" },
+              { icon: Linkedin, label: "LinkedIn", value: "Lucas Tabacchi", href: "https://www.linkedin.com/in/lucas-tabacchi-ab74551a5/?skipRedirect=true" },
+              { icon: MapPin, label: "Ubicación", value: "Concepción del Uruguay, ER, AR", href: "#" },
+            ].map((c, i) => (
+              <a
+                key={c.label}
+                href={c.href}
+                target={c.href.startsWith("http") ? "_blank" : undefined}
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 p-5 rounded-2xl border border-border bg-card/40 backdrop-blur-sm hover:border-primary hover:-translate-y-1 hover:shadow-[0_10px_30px_-15px_hsl(var(--primary)/0.5)] transition-all duration-300 shine"
+                style={{ transitionDelay: `${i * 80}ms` }}
+              >
+                <c.icon className="size-5 text-muted-foreground shrink-0 transition-all duration-300 group-hover:text-primary group-hover:scale-110" />
+                <div>
+                  <div className="font-mono text-xs uppercase tracking-widest text-muted-foreground">
+                    {c.label}
+                  </div>
+                  <div className="font-medium">{c.value}</div>
+                </div>
+              </a>
+            ))}
           </div>
         </div>
       </div>
