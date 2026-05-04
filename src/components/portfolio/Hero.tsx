@@ -5,7 +5,7 @@ const Hero = () => {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-[100dvh] flex items-start lg:items-center overflow-hidden"
     >
       {/* Spotlight radial — cyan glow centered on the title (animated breathing) */}
       <div
@@ -45,7 +45,7 @@ const Hero = () => {
 
       {/* Removed vignette and bottom gradient to allow seamless Matrix rain flow */}
 
-      <div className="container relative pt-24 lg:pt-32 pb-20">
+      <div className="container relative pt-28 lg:pt-32 pb-20">
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 xl:gap-20 items-center">
           <div>
           <div className="inline-flex items-center gap-2 mb-8 px-4 py-1.5 rounded-full border border-border bg-card/40 backdrop-blur-sm font-mono text-xs animate-fade-up">
