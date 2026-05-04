@@ -27,13 +27,41 @@ const ParticlesBackground = () => {
     const charset = "01アイウエオカキクケコサシスセソタチツテトナニヌネノABCDEF{}[]<>/=*+-#$".split("");
 
     const resize = () => {
-      width = canvas.clientWidth;
-      height = canvas.clientHeight;
+      const newWidth = canvas.clientWidth;
+      const newHeight = canvas.clientHeight;
+      if (width === newWidth && height === newHeight) return;
+
+      const widthChanged = width !== newWidth;
+
+      // Save existing canvas to prevent blink during resize
+      let tempCanvas: HTMLCanvasElement | null = null;
+      if (width > 0 && height > 0) {
+        tempCanvas = document.createElement("canvas");
+        tempCanvas.width = canvas.width;
+        tempCanvas.height = canvas.height;
+        const tempCtx = tempCanvas.getContext("2d");
+        if (tempCtx) tempCtx.drawImage(canvas, 0, 0);
+      }
+
+      width = newWidth;
+      height = newHeight;
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      columns = Math.floor(width / fontSize);
-      drops = Array.from({ length: columns }, () => Math.random() * -50);
+
+      // Restore old canvas content
+      if (tempCanvas) {
+        ctx.save();
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        ctx.drawImage(tempCanvas, 0, 0);
+        ctx.restore();
+      }
+
+      const newColumns = Math.floor(width / fontSize);
+      if (widthChanged || drops.length === 0) {
+        columns = newColumns;
+        drops = Array.from({ length: columns }, () => Math.random() * -50);
+      }
     };
     resize();
     window.addEventListener("resize", resize);
