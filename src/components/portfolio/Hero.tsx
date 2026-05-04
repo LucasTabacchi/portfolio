@@ -116,10 +116,15 @@ const Hero = () => {
             ].map((s, i) => (
               <div
                 key={s.v}
-                className="group cursor-default animate-fade-up"
+                className={`group cursor-default animate-fade-up flex flex-col ${
+                  i === 0 ? "items-start text-left" :
+                  i === 1 ? "items-end text-right sm:items-center sm:text-center" :
+                  i === 2 ? "items-start text-left sm:items-center sm:text-center" :
+                  "items-end text-right"
+                }`}
                 style={{ animationDelay: `${0.5 + i * 0.1}s` }}
               >
-                <div className="text-3xl font-serif-display text-gradient-warm transition-transform duration-300 group-hover:scale-110 group-hover:translate-x-1">
+                <div className="text-3xl font-serif-display text-gradient-warm transition-transform duration-300 group-hover:scale-105">
                   {s.k}
                 </div>
                 <div className="text-xs text-muted-foreground mt-1 transition-colors group-hover:text-foreground">
