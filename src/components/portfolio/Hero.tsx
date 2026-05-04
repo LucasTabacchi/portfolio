@@ -102,7 +102,7 @@ const Hero = () => {
           </div>
 
           {/* JSON terminal — right column */}
-          <div className="w-full">
+          <div className="w-full min-w-0">
             <JsonTerminal />
           </div>
 
