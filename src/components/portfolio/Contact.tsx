@@ -75,8 +75,7 @@ const Contact = () => {
 
   return (
     <section id="contact" className="relative py-32 border-t border-border overflow-hidden">
-      {/* Glow */}
-      <div className="absolute inset-0 bg-gradient-radial -z-10 opacity-60" />
+
 
       <div className="container relative">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 xl:gap-20">
