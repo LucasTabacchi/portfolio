@@ -44,8 +44,8 @@ const Hero = () => {
       </div>
 
       {/* Vignette to fade matrix at edges and bottom */}
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_30%,hsl(var(--background)/0.85)_100%)]" />
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 -z-10 bg-gradient-to-b from-transparent to-background" />
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,transparent_30%,hsl(var(--background)/0.5)_100%)]" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-40 -z-10 bg-gradient-to-b from-transparent to-background/50" />
 
       <div className="container relative pt-32 pb-20">
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 xl:gap-20 items-center">
