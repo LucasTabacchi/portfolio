@@ -52,7 +52,7 @@ const JsonTerminal = () => {
   const done = typed >= totalChars;
 
   return (
-    <div className="w-full max-w-md mx-auto lg:mx-0 rounded-2xl border border-border bg-card/70 backdrop-blur-md shadow-card overflow-hidden animate-fade-up" style={{ animationDelay: "0.3s" }}>
+    <div className="w-full rounded-2xl border border-border bg-card/70 backdrop-blur-md shadow-card overflow-hidden animate-fade-up" style={{ animationDelay: "0.3s" }}>
       {/* Title bar */}
       <div className="flex items-center justify-between px-4 py-2.5 border-b border-border bg-background/60">
         <div className="flex items-center gap-1.5">
