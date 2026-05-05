@@ -145,10 +145,14 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-muted-foreground animate-scroll-cue pointer-events-none transition-opacity duration-500 ${showCue ? 'opacity-100' : 'opacity-0'}`}>
-        <span className="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
-        <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
+      {/* Scroll cue — outer wrapper handles centering + visibility, inner handles bounce */}
+      <div
+        className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none transition-opacity duration-500 ${showCue ? 'opacity-100' : 'opacity-0'}`}
+      >
+        <div className="flex flex-col items-center gap-2 text-muted-foreground animate-scroll-cue">
+          <span className="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
+          <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
+        </div>
       </div>
     </section>
   );
