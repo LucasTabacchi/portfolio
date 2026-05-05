@@ -26,7 +26,7 @@ const featured: Featured[] = [
       "Herramienta para developers que analiza proyectos y genera artefactos Docker editables, validables y listos para iterar. Stack completo con Django, Celery y Redis.",
     tags: ["Python", "Django", "DRF", "Celery", "Redis", "Docker"],
     image: autodocker,
-    live: "https://autodocker-web.onrender.com/",
+    live: "https://app.144.22.177.160.sslip.io/accounts/login/?next=/",
     code: "https://github.com/LucasTabacchi/autodocker",
     accentText: "text-primary",
     accentOverlay: "from-primary/30",
@@ -47,7 +47,7 @@ const featured: Featured[] = [
   {
     n: "03",
     title: "Amargo y Dulce",
-    tagline: "Commerce + UX",
+    tagline: "E-commerce + UX",
     description:
       "Ecommerce fullstack con catálogo, checkout, integración con Mercado Pago, cupones, facturación y emails transaccionales. Frontend en Next.js 14 y backend headless en Strapi.",
     tags: ["Next.js 14", "TypeScript", "Strapi", "Mercado Pago", "Brevo"],
