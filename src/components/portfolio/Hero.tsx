@@ -1,7 +1,16 @@
+import { useState, useEffect } from "react";
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import JsonTerminal from "./JsonTerminal";
 
 const Hero = () => {
+  const [showCue, setShowCue] = useState(true);
+
+  useEffect(() => {
+    const onScroll = () => setShowCue(window.scrollY < 100);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <section
       id="top"
@@ -137,7 +146,7 @@ const Hero = () => {
       </div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-muted-foreground animate-scroll-cue">
+      <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-muted-foreground animate-scroll-cue pointer-events-none transition-opacity duration-500 ${showCue ? 'opacity-100' : 'opacity-0'}`}>
         <span className="text-[10px] font-mono uppercase tracking-widest">Scroll</span>
         <div className="w-px h-8 bg-gradient-to-b from-primary to-transparent" />
       </div>

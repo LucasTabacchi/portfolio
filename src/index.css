@@ -95,6 +95,11 @@
   html {
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
   }
   html::-webkit-scrollbar,
   body::-webkit-scrollbar,
