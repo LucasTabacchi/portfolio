@@ -2,6 +2,7 @@ import { ArrowUpRight, Github } from "lucide-react";
 import amargo from "@/assets/project-amargo.jpg";
 import flow from "@/assets/project-flow.jpg";
 import autodocker from "@/assets/project-autodocker.jpg";
+import heroverse from "@/assets/project-heroverse.png";
 import { useReveal } from "@/hooks/use-reveal";
 
 type Featured = {
@@ -56,6 +57,19 @@ const featured: Featured[] = [
     code: "https://github.com/LucasTabacchi/frontend-ecommerce-amargo-y-dulce",
     accentText: "text-secondary",
     accentOverlay: "from-secondary/30",
+  },
+  {
+    n: "04",
+    title: "HeroVerse",
+    tagline: "SPA + API REST",
+    description:
+      "Aplicación fullstack para gestionar superhéroes Marvel/DC con CRUD, filtros, búsqueda, vista detalle y carrusel de imágenes. Frontend en React/Vite y API REST con Express, Mongoose y MongoDB.",
+    tags: ["React", "Vite", "TypeScript", "Tailwind", "Node.js", "MongoDB"],
+    image: heroverse,
+    live: "https://heroverse2026.vercel.app/",
+    code: "https://github.com/LucasTabacchi/BDD_NSQL_2026/tree/main/heroverse-spa",
+    accentText: "text-violet",
+    accentOverlay: "from-violet/30",
   },
 ];
 
